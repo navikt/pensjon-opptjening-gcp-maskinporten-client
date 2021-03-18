@@ -28,8 +28,8 @@ internal class MaskinportenClientTest {
     fun `reuse token from maskinporten if not expired`() {
         maskinportenMock.`mock valid response for only one call`()
 
-        val firstToken = maskinportenClient.maskinportenTokenString
-        val secondToken = maskinportenClient.maskinportenTokenString
+        val firstToken = maskinportenClient.tokenString
+        val secondToken = maskinportenClient.tokenString
         assertEquals(firstToken, secondToken)
     }
 
@@ -37,13 +37,13 @@ internal class MaskinportenClientTest {
     fun `throws MaskinportenObjectMapperException if response from maskinporten cant be mapped`() {
         maskinportenMock.`mock invalid JSON response`()
 
-        assertThrows<MaskinportenObjectMapperException> { maskinportenClient.maskinportenToken }
+        assertThrows<MaskinportenObjectMapperException> { maskinportenClient.token }
     }
 
     @Test
     fun `Throws MaskinportenClientException when status other than 200 is returned from maskinporten`() {
         maskinportenMock.`mock 500 server error`()
 
-        assertThrows<MaskinportenClientException> { maskinportenClient.maskinportenToken }
+        assertThrows<MaskinportenClientException> { maskinportenClient.token }
     }
 }

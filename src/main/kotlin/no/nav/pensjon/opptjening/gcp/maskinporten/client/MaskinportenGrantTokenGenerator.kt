@@ -5,6 +5,7 @@ import com.nimbusds.jose.JWSHeader
 import com.nimbusds.jose.crypto.RSASSASigner
 import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
+import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenConfig
 import java.util.*
 
 class MaskinportenGrantTokenGenerator(

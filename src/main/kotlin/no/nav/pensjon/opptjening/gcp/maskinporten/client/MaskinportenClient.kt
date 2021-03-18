@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.nimbusds.jwt.SignedJWT
+import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenConfig
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.exceptions.MaskinportenClientException
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.exceptions.MaskinportenObjectMapperException
 import java.net.URI
@@ -22,14 +23,14 @@ class MaskinportenClient(
     private val httpClient: HttpClient = HttpClient.newBuilder().proxy(config.proxy).build()
     private val objectMapper = ObjectMapper().registerModule(KotlinModule())
 
-    val maskinportenToken: SignedJWT
+    val token: SignedJWT
         get() = tokenCache.token ?: TokenCache(tokenFromMaskinporten).let {
             tokenCache = it
             it.token!!
         }
 
-    val maskinportenTokenString: String
-        get() = maskinportenToken.parsedString
+    val tokenString: String
+        get() = token.parsedString
 
     private val tokenFromMaskinporten: String
         get() = httpClient.send(tokenRequest, ofString()).run {
