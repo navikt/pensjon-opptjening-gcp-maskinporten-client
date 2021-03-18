@@ -9,7 +9,7 @@ plugins {
     `java-library`
 }
 
-group = "no.nav.pensjonsamhandling"
+group = "no.nav.pensjonopptjening"
 
 repositories {
     mavenCentral()
