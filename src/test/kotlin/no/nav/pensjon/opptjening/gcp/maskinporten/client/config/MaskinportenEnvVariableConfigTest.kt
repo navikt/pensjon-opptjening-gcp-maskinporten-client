@@ -32,8 +32,7 @@ internal class MaskinportenEnvVariableConfigCreatorTest {
         assertTrue(exception.message!! containWord MASKINPORTEN_CLIENT_ID_KEY)
         assertTrue(exception.message!! containWord MASKINPORTEN_CLIENT_JWK_KEY)
         assertTrue(exception.message!! containWord MASKINPORTEN_SCOPES_KEY)
-        assertTrue(exception.message!! containWord MASKINPORTEN_JWT_EXPIRATION_TIME_IN_SECONDS_KEY)
-
+        assertTrue(exception.message!! notContainingWord MASKINPORTEN_JWT_EXPIRATION_TIME_IN_SECONDS_KEY)
     }
 
     @Test
@@ -73,5 +72,6 @@ internal class MaskinportenEnvVariableConfigCreatorTest {
 
 
 private infix fun String.containWord(word: String) = this.contains(word)
+private infix fun String.notContainingWord(word: String) = !this.contains(word)
 
 private fun createPrivateKey() = RSAKeyGenerator(2048).keyID("123").generate().toJSONString()

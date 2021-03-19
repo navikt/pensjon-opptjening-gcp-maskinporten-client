@@ -20,8 +20,7 @@ class MaskinportenEnvVariableConfigCreator {
             MASKINPORTEN_WELL_KNOWN_URL_KEY,
             MASKINPORTEN_CLIENT_ID_KEY,
             MASKINPORTEN_CLIENT_JWK_KEY,
-            MASKINPORTEN_SCOPES_KEY,
-            MASKINPORTEN_JWT_EXPIRATION_TIME_IN_SECONDS_KEY
+            MASKINPORTEN_SCOPES_KEY
         )
 
         fun createMaskinportenConfig(env: Map<String, String>): MaskinportenConfig {
