@@ -25,13 +25,28 @@ class MaskinportenEnvVariableConfigCreator {
 
         fun createMaskinportenConfig(env: Map<String, String>): MaskinportenConfig {
             env.verifyEnvironmentVariables(requiredEnvKey)
-
-            return MaskinportenConfig(
-                baseUrl = createBaseUrl(env[MASKINPORTEN_WELL_KNOWN_URL_KEY]!!),
+            return createMaskinportenConfig(
+                wellKnownUrl = env[MASKINPORTEN_WELL_KNOWN_URL_KEY]!!,
                 clientId = env[MASKINPORTEN_CLIENT_ID_KEY]!!,
-                privateKey = parseJwk(env[MASKINPORTEN_CLIENT_JWK_KEY]!!),
-                scope = env[MASKINPORTEN_SCOPES_KEY]!!,
-                validInSeconds = env.getOrDefault(MASKINPORTEN_JWT_EXPIRATION_TIME_IN_SECONDS_KEY, "120").toInt()
+                privateKey = env[MASKINPORTEN_CLIENT_JWK_KEY]!!,
+                scopes = env[MASKINPORTEN_SCOPES_KEY]!!,
+                validInSeconds = env[MASKINPORTEN_JWT_EXPIRATION_TIME_IN_SECONDS_KEY],
+            )
+        }
+
+        fun createMaskinportenConfig(
+            wellKnownUrl: String,
+            clientId: String,
+            privateKey: String,
+            scopes: String,
+            validInSeconds: String?,
+        ): MaskinportenConfig {
+            return MaskinportenConfig(
+                baseUrl = createBaseUrl(wellKnownUrl),
+                clientId = clientId,
+                privateKey = parseJwk(privateKey),
+                scope = scopes,
+                validInSeconds = (validInSeconds ?: "120").toInt()
             )
         }
 
@@ -41,7 +56,6 @@ class MaskinportenEnvVariableConfigCreator {
             throw MaskinportenParseJwkException()
         }
 
-        //TODO make pretty
         private fun createBaseUrl(url: String): String {
             val wellKnownUrl = URI.create(url).toURL()
             return "${wellKnownUrl.protocol}://${wellKnownUrl.host}${createPortString(wellKnownUrl)}"
