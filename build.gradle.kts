@@ -11,6 +11,12 @@ plugins {
 
 group = "no.nav.pensjonopptjening"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -44,11 +50,6 @@ publishing {
             }
         }
     }
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
 }
 
 tasks {
