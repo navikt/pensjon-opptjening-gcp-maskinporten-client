@@ -26,7 +26,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.15.2")
     implementation("com.nimbusds", "nimbus-jose-jwt", "9.1.2")
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.7.0")
-    testImplementation("com.github.tomakehurst", "wiremock", "2.27.2")
+    testImplementation("com.github.tomakehurst", "wiremock", "3.0.1")
 }
 
 release {
