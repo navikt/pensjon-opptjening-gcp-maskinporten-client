@@ -9,7 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Checkout code
@@ -27,6 +27,8 @@ jobs:
         run: echo "VERSION=$(grep -v '^#' gradle.properties | grep 'version=' | cut -d '=' -f2 | xargs)" >> $GITHUB_ENV
 
       - name: build and update version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build release -Prelease.useAutomaticVersion=true
 
       - name: check out release-version
