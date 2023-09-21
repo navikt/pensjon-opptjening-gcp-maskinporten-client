@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
-    kotlin("jvm") version "1.5.21"
-    kotlin("plugin.serialization") version "1.5.21"
+    kotlin("jvm") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     id("se.patrikerdes.use-latest-versions") version "0.2.14"
     id("net.researchgate.release") version "2.8.1"
     `maven-publish`
@@ -54,9 +54,13 @@ publishing {
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "16"
+        kotlinOptions.jvmTarget = "17"
     }
     test {
         useJUnitPlatform()
     }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
 }
