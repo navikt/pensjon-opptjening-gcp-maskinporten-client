@@ -21,7 +21,7 @@ class MaskinportenClient(
     private val grantTokenGenerator = MaskinportenGrantTokenGenerator(config)
 
     private val httpClient: HttpClient = HttpClient.newBuilder().proxy(config.proxy).build()
-    private val objectMapper = ObjectMapper().registerModule(KotlinModule())
+    private val objectMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
 
     val token: SignedJWT
         get() = tokenCache.token ?: TokenCache(tokenFromMaskinporten).let {
