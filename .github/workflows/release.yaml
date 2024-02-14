@@ -1,9 +1,6 @@
 name: Release pensjon-opptjening-gcp-maskinporten-client
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
