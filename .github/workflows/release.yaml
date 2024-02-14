@@ -19,10 +19,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK
+      - name: 'Setup Java'
         uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'
           java-version: 21
+          cache: 'gradle'
 
       - name: set up git
         run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "Github Actions"
