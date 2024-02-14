@@ -99,4 +99,11 @@ class ApiTest {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isInternalServerError)
     }
+
+    @Test
+    fun `actuator kan kalles uten token`() {
+        mvc.perform(
+            get("/actuator/health")
+        ).andExpect(status().isOk)
+    }
 }

@@ -39,6 +39,7 @@ repositories {
 dependencies {
     implementation(project(":pensjon-opptjening-gcp-maskinporten-client"))
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("no.nav.security:token-validation-spring:$navTokenSupportVersion")
     implementation("org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logbackEncoderVersion")

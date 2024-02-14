@@ -91,7 +91,6 @@ internal class MaskinportenMock {
         )
     }
 
-
     private fun createMaskinportenToken(): String {
         val claimsSet = JWTClaimsSet.Builder()
             .subject("alice")
