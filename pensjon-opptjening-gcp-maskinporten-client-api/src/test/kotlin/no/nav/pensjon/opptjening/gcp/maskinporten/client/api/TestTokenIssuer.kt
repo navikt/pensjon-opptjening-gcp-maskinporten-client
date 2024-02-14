@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service
 internal class TestTokenIssuer(
     private val oauth2Server: MockOAuth2Server
 ) {
-    companion object {
-        const val ACCEPTED_AUDIENCE = "pensjon-opptjening-afp-api"
-    }
-
     fun token(
         issuerId: String,
         audience: String,
@@ -38,7 +34,7 @@ internal class TestTokenIssuer(
 
     fun bearerToken(
         issuerId: String,
-        audience: String = ACCEPTED_AUDIENCE,
+        audience: String = "pensjon-opptjening-gcp-maskinporten-client-api",
         scopes: List<String> = emptyList(),
         roles: List<String> = emptyList()
     ): String {

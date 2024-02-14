@@ -1,30 +1,27 @@
 package no.nav.pensjon.opptjening.gcp.maskinporten.client.api
 
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClient
-import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenEnvVariableConfigCreator
 import no.nav.security.token.support.core.api.Protected
-import org.springframework.beans.factory.annotation.Value
+import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
+@EnableJwtTokenValidation
 @Protected
 class Api(
-    @Value("\${MASKINPORTEN_WELL_KNOWN_URL}") var wellknownUrl: String
+    private val maskinportenClient: MaskinportenClient
 ) {
 
-    private val client = MaskinportenClient(
-        MaskinportenEnvVariableConfigCreator.createMaskinportenConfig(
-            wellKnownUrl = wellknownUrl,
-            clientId = wellknownUrl,
-            privateKey = wellknownUrl,
-            scopes = wellknownUrl,
-            validInSeconds = wellknownUrl,
-        )
-    )
-
     @GetMapping("/token")
-    fun token(): String {
-        return client.tokenString
+    fun token(): ResponseEntity<String> {
+        return try {
+            ResponseEntity.ok(maskinportenClient.tokenString)
+        } catch (ex: Exception) {
+            ResponseEntity.internalServerError().body(ex.message)
+        }
     }
 }

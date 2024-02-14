@@ -11,8 +11,8 @@ import com.nimbusds.jose.jwk.RSAKey
 import com.nimbusds.jose.jwk.gen.RSAKeyGenerator
 import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
-import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClient.Companion.CONTENT_TYPE
-import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClient.Companion.GRANT_TYPE
+import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClientImpl.Companion.CONTENT_TYPE
+import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClientImpl.Companion.GRANT_TYPE
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenConfig
 import java.util.*
 

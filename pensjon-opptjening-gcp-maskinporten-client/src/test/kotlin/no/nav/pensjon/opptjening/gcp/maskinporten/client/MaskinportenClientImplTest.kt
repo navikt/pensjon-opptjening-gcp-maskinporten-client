@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-internal class MaskinportenClientTest {
+internal class MaskinportenClientImplTest {
     private var maskinportenMock: MaskinportenMock = MaskinportenMock()
 
-    private lateinit var maskinportenClient: MaskinportenClient
+    private lateinit var maskinportenClient: MaskinportenClientImpl
 
     @BeforeEach
     internal fun beforeEach() {
         maskinportenMock.reset()
-        maskinportenClient = MaskinportenClient(MaskinportenMock.createMaskinportenConfig())
+        maskinportenClient = MaskinportenClientImpl(MaskinportenMock.createMaskinportenConfig())
     }
 
     @AfterAll

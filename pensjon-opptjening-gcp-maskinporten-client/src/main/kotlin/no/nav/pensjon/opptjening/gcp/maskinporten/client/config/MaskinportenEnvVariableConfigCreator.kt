@@ -7,7 +7,7 @@ import java.net.URI
 import java.net.URL
 
 
-class MaskinportenEnvVariableConfigCreator {
+internal class MaskinportenEnvVariableConfigCreator {
 
     companion object {
         const val MASKINPORTEN_WELL_KNOWN_URL_KEY = "MASKINPORTEN_WELL_KNOWN_URL"

@@ -1,4 +1,5 @@
-MASKINPORTEN_WELL_KNOWN_URL: http://localhost:8080
-MASKINPORTEN_CLIENT_ID: id
-MASKINPORTEN_CLIENT_JWK: jwk
-MASKINPORTEN_SCOPES: scope
+no.nav.security.jwt:
+  issuer:
+    azure:
+      discoveryurl: http://localhost:${mock-oauth2-server.port}/azure/.well-known/openid-configuration
+      accepted_audience: pensjon-opptjening-gcp-maskinporten-client-api

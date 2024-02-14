@@ -4,7 +4,7 @@ import com.nimbusds.jose.jwk.RSAKey
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.suffix
 import java.net.ProxySelector
 
-data class MaskinportenConfig(
+internal data class MaskinportenConfig(
      internal val baseUrl: String,
      internal val clientId: String,
      internal val privateKey: RSAKey,

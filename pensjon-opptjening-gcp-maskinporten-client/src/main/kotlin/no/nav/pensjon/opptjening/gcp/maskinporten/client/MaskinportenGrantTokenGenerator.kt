@@ -8,7 +8,7 @@ import com.nimbusds.jwt.SignedJWT
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenConfig
 import java.util.*
 
-class MaskinportenGrantTokenGenerator(
+internal class MaskinportenGrantTokenGenerator(
     private val config: MaskinportenConfig
 ) {
     internal val jwt: String
