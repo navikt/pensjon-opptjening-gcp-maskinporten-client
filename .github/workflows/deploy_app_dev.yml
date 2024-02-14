@@ -54,6 +54,6 @@ jobs:
       - name: 'Deploy pensjon-opptjening-gcp-maskinporten-client-api to dev-gcp'
         uses: nais/deploy/actions/deploy@v2
         env:
-          RESOURCE: nais-dev.yml
+          RESOURCE: pensjon-opptjening-gcp-maskinporten-client-api/nais-dev.yml
           CLUSTER: dev-gcp
           IMAGE: ${{ env.IMAGE_GHCR }}
