@@ -12,6 +12,9 @@ jobs:
     permissions:
       contents: write
       packages: write
+    defaults:
+      run:
+        working-directory: ./pensjon-opptjening-gcp-maskinporten-client
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

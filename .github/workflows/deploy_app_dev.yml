@@ -11,6 +11,9 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    defaults:
+      run:
+        working-directory: ./pensjon-opptjening-gcp-maskinporten-client-api
     steps:
       # PULLER REPO
       - name: 'Pull repo'
@@ -50,9 +53,7 @@ jobs:
       # DEPLOYER dev-gcp
       - name: 'Deploy pensjon-opptjening-gcp-maskinporten-client-api to dev-gcp'
         uses: nais/deploy/actions/deploy@v2
-        with:
-          context: ./api
         env:
-          RESOURCE: .nais/deploy-app-dev.yml
+          RESOURCE: ./nais-dev.yml
           CLUSTER: dev-gcp
           IMAGE: ${{ env.IMAGE_GHCR }}
