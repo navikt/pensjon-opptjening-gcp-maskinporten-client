@@ -1,12 +1,32 @@
 package no.nav.pensjon.opptjening.gcp.maskinporten.client
 
 import com.nimbusds.jwt.SignedJWT
-import java.util.*
+import java.util.Date
 
 
-internal class TokenCache(token: String? = null) {
-    internal val token = token?.let(SignedJWT::parse)
-        get() = field?.takeUnless { it.isExpired }
+internal class TokenCache {
+
+    private val cache: MutableMap<String, SignedJWT> = mutableMapOf()
+
+    fun get(scope: String, resource: String?): SignedJWT? {
+        val key = "$scope$resource"
+        val token = cache[key]
+        return if (token != null && !token.isExpired) {
+            token
+        } else {
+            cache.remove(key)
+            null
+        }
+    }
+
+    fun put(token: SignedJWT) {
+        val key = token.jwtClaimsSet.let {
+            val scope = it.getStringClaim("scope")
+            val resource = it.getStringClaim("resource")
+            "$scope$resource"
+        }
+        cache[key] = token
+    }
 
     private val SignedJWT.isExpired: Boolean
         get() = jwtClaimsSet?.expirationTime?.is20SecondsPrior?.not() ?: false

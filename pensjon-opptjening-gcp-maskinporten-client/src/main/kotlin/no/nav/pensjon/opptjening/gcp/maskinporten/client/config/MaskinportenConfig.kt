@@ -8,11 +8,7 @@ internal data class MaskinportenConfig(
      internal val baseUrl: String,
      internal val clientId: String,
      internal val privateKey: RSAKey,
-     internal val scope: String,
-     internal val validInSeconds: Int,
-     internal val proxy: ProxySelector = ProxySelector.getDefault(),
-     internal val jti: String? = null,
-     internal val resource: String? = null
+     internal val proxy: ProxySelector = ProxySelector.getDefault()
 ) {
      internal val issuer = baseUrl.suffix("/")
 }

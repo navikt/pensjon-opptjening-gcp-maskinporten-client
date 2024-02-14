@@ -13,27 +13,26 @@ import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClientImpl.Companion.CONTENT_TYPE
 import no.nav.pensjon.opptjening.gcp.maskinporten.client.MaskinportenClientImpl.Companion.GRANT_TYPE
-import no.nav.pensjon.opptjening.gcp.maskinporten.client.config.MaskinportenConfig
-import java.util.*
+import java.util.Date
 
 internal class MaskinportenMock {
-    private var mock = WireMockServer(PORT)
+    private var wireMockServer = WireMockServer(PORT)
     private val privateKey: RSAKey = RSAKeyGenerator(2048).keyID("123").generate()
 
     init {
-        mock.start()
+        wireMockServer.start()
     }
 
     internal fun reset() {
-        mock.resetAll()
+        wireMockServer.resetAll()
     }
 
     internal fun stop() {
-        mock.stop()
+        wireMockServer.stop()
     }
 
     internal fun `mock  maskinporten token enpoint`() {
-        mock.stubFor(
+        wireMockServer.stubFor(
             WireMock.post(WireMock.urlPathEqualTo(TOKEN_PATH))
                 .withHeader("Content-Type", WireMock.equalTo(CONTENT_TYPE))
                 .withRequestBody(WireMock.matchingJsonPath("$.grant_type", WireMock.matching(GRANT_TYPE)))
@@ -53,7 +52,7 @@ internal class MaskinportenMock {
     }
 
     internal fun `mock valid response for only one call`() {
-        mock.stubFor(
+        wireMockServer.stubFor(
             WireMock.post(WireMock.urlPathEqualTo(TOKEN_PATH))
                 .withHeader("Content-Type", WireMock.equalTo(CONTENT_TYPE))
                 .inScenario("First time")
@@ -75,7 +74,7 @@ internal class MaskinportenMock {
     }
 
     internal fun `mock invalid JSON response`() {
-        mock.stubFor(
+        wireMockServer.stubFor(
             WireMock.post(WireMock.urlPathEqualTo(TOKEN_PATH))
                 .withHeader("Content-Type", WireMock.equalTo(CONTENT_TYPE))
                 .withRequestBody(WireMock.matching("grant_type=$GRANT_TYPE&assertion=.*"))
@@ -84,7 +83,7 @@ internal class MaskinportenMock {
     }
 
     internal fun `mock 500 server error`() {
-        mock.stubFor(
+        wireMockServer.stubFor(
             WireMock.post(WireMock.urlPathEqualTo(TOKEN_PATH))
                 .withHeader("Content-Type", WireMock.equalTo(CONTENT_TYPE))
                 .withRequestBody(WireMock.matching("grant_type=$GRANT_TYPE&assertion=.*"))
@@ -98,6 +97,7 @@ internal class MaskinportenMock {
             .subject("alice")
             .issuer("https://c2id.com")
             .expirationTime(Date(Date().time + (60 * 1000)))
+            .claim("scope", DEFAULT_SCOPE)
             .build()
         val signedJWT = SignedJWT(
             JWSHeader.Builder(JWSAlgorithm.RS256).keyID(privateKey.keyID).build(),
@@ -108,18 +108,23 @@ internal class MaskinportenMock {
         return signedJWT.serialize()
     }
 
+    fun grant(): String {
+        return wireMockServer.allServeEvents.single().request.formParameters["grant_type"]!!.values.single()
+    }
+
+    fun assertion(): String {
+        return wireMockServer.allServeEvents.single().request.formParameters["assertion"]!!.values().single()
+    }
+
+    fun baseUrl(): String {
+        return MASKINPORTEN_MOCK_HOST
+    }
+
     companion object {
 
         private const val PORT = 8096
         private const val TOKEN_PATH = "/token"
         private const val MASKINPORTEN_MOCK_HOST = "http://localhost:$PORT"
-
-        internal fun createMaskinportenConfig(privateKey: RSAKey = RSAKeyGenerator(2048).keyID("123").generate()) = MaskinportenConfig(
-            baseUrl = MASKINPORTEN_MOCK_HOST,
-            clientId = "17b3e4e8-8203-4463-a947-5c24021b7742",
-            privateKey = privateKey,
-            scope = "testScope",
-            validInSeconds = 120
-        )
+        const val DEFAULT_SCOPE = "scope"
     }
 }
