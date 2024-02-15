@@ -50,7 +50,7 @@ internal class MaskinportenClientBuilderTest {
     @Test
     fun `throws MalformedUrlException if wellknownurl is invalid`() {
         assertThrows<MalformedURLException> {
-            val builder = MaskinportenClient.builder()
+            MaskinportenClient.builder()
                 .wellKnownUrl("baseurl.com:1234")
                 .clientId("clientId")
                 .privateKey(createPrivateKey())

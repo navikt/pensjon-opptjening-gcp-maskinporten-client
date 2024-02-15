@@ -9,9 +9,9 @@ import java.net.URI
 import java.net.URL
 
 class MaskinportenClientBuilder {
-    lateinit var propWellKnown: String
-    lateinit var propClientId: String
-    lateinit var propPrivateKey: String
+    internal lateinit var propWellKnown: String
+    internal lateinit var propClientId: String
+    internal lateinit var propPrivateKey: String
 
     fun wellKnownUrl(value: String): MaskinportenClientBuilder {
         propWellKnown = value

@@ -9,24 +9,21 @@ val navTokenSupportVersion = "4.1.0"
 val hibernateValidatorVersion = "8.0.1.Final"
 
 plugins {
-    val kotlinVersion = "1.9.22"
-    id("org.jetbrains.kotlin.jvm") version kotlinVersion
-    id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
+    kotlin("jvm") version libs.versions.kotlin.get()
+    id("org.jetbrains.kotlin.plugin.spring") version libs.versions.kotlin.get()
     id("org.springframework.boot") version "3.2.1"
+    id("io.spring.dependency-management") version "1.1.4"
 }
-
-apply(plugin = "io.spring.dependency-management")
 
 group = "no.nav.pensjonopptjening"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
     }
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven("https://maven.pkg.github.com/navikt/maven-release") {
         credentials {
@@ -57,7 +54,7 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "21"
+        jvmTarget = libs.versions.java.get()
     }
 }
 

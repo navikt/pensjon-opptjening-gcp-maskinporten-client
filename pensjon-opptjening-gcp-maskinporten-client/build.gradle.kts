@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.serialization") version "1.7.10"
+    kotlin("jvm") version libs.versions.kotlin.get()
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
     id("se.patrikerdes.use-latest-versions") version "0.2.14"
     id("net.researchgate.release") version "2.8.1"
     `maven-publish`
@@ -13,12 +13,11 @@ group = "no.nav.pensjonopptjening"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
     }
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -55,7 +54,7 @@ publishing {
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
+        kotlinOptions.jvmTarget = libs.versions.java.get()
     }
     test {
         useJUnitPlatform()
