@@ -33,6 +33,9 @@ dependencies {
 release {
     newVersionCommitMessage = "[Release Plugin] - next version commit: "
     tagTemplate = "release-\${version}"
+    git {
+        requireBranch = "master"
+    }
 }
 
 publishing {
