@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
@@ -54,7 +55,9 @@ publishing {
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = libs.versions.java.get()
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.get()))
+        }
     }
     test {
         useJUnitPlatform()
