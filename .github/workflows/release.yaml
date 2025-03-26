@@ -9,37 +9,38 @@ jobs:
     permissions:
       contents: write
       packages: write
+      id-token: write
     defaults:
       run:
         working-directory: ./pensjon-opptjening-gcp-maskinporten-client
     steps:
-      - name: Checkout code
+      - name: 'Checkout code'
         uses: actions/checkout@v4
 
-      - name: 'Setup Java'
+      - name: 'Java 21'
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: 21
           cache: 'gradle'
 
-      - name: set up git
+      - name: 'Setup git'
         run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "Github Actions"
 
-      - name: capture version number for release
+      - name: 'Capture version number for release'
         run: echo "VERSION=$(grep -v '^#' gradle.properties | grep 'version=' | cut -d '=' -f2 | xargs)" >> $GITHUB_ENV
 
-      - name: build and update version
+      - name: 'Build and update version'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build release -Prelease.useAutomaticVersion=true
 
-      - name: check out release-version
+      - name: 'Check out release-version'
         uses: actions/checkout@v4
         with:
           ref: "release-${{ env.VERSION }}"
 
-      - name: publish package
+      - name: 'Publish package'
         run: ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
