@@ -34,7 +34,6 @@ jobs:
         id: docker-push
         with:
           team: pensjonopptjening
-          tag: ${{ github.sha }}
 
       - name: 'Deploy pensjon-opptjening-gcp-maskinporten-client-api to dev-gcp'
         uses: nais/deploy/actions/deploy@v2
