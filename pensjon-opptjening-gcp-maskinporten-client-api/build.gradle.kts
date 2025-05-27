@@ -1,18 +1,18 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val jacksonVersion = "2.17.1"
-val logbackEncoderVersion = "7.4"
+val jacksonVersion = "2.19.0"
+val logbackEncoderVersion = "7.4" // kan ikke oppgraderes pga spring/logback-classic
 val azureAdClient = "0.0.7"
 val wiremockVersion = "3.0.1"
 val mockitoKotlinVersion = "5.4.0"
-val navTokenSupportVersion = "5.0.20"
+val navTokenSupportVersion = "5.0.29"
 val hibernateValidatorVersion = "8.0.1.Final"
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("org.jetbrains.kotlin.plugin.spring") version libs.versions.kotlin.get()
-    id("org.springframework.boot") version "3.4.4"
+    id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -39,7 +39,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("no.nav.security:token-validation-spring:$navTokenSupportVersion")
-    implementation("org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion")
+    implementation("org.hibernate.validator:hibernate-validator")
     implementation("net.logstash.logback:logstash-logback-encoder:$logbackEncoderVersion")
 
     testImplementation(kotlin("test"))

@@ -24,8 +24,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.18.3")
-    implementation("com.nimbusds", "nimbus-jose-jwt", "10.0.2")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.19.0")
+    implementation("com.nimbusds", "nimbus-jose-jwt", "10.3")
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.11.0")
     testImplementation("com.github.tomakehurst", "wiremock", "3.0.1")
 }
