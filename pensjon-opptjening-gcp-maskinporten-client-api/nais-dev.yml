@@ -25,6 +25,11 @@ spec:
       consumes:
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.beregn.read
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.simuler.read
+  outbound:
+    rules:
+      - application: 'logging'
+        namespace: 'nais-system'
+
   ingresses:
     - https://pensjon-opptjening-gcp-maskinporten-client-api.intern.dev.nav.no
   image: {{ image }}
@@ -42,6 +47,12 @@ spec:
   replicas:
     min: 1
     max: 1
+  observability:
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
+        - id: secure_logs
   resources:
     limits:
       cpu: "500m"
