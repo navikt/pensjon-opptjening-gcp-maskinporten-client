@@ -39,7 +39,7 @@ jobs:
         id: docker-push
         with:
           team: pensjonopptjening
-          dockerfile: ./Dockerfile
+          dockerfile: pensjon-opptjening-gcp-maskinporten-client-api/Dockerfile
 
       - name: 'Deploy pensjon-opptjening-gcp-maskinporten-client-api to dev-gcp'
         uses: nais/deploy/actions/deploy@v2
