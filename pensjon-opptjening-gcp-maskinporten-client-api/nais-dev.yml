@@ -25,10 +25,11 @@ spec:
       consumes:
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.beregn.read
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.simuler.read
-  outbound:
-    rules:
-      - application: 'logging'
-        namespace: 'nais-system'
+  accessPolicy:
+    outbound:
+      rules:
+        - application: 'logging'
+          namespace: 'nais-system'
 
   ingresses:
     - https://pensjon-opptjening-gcp-maskinporten-client-api.intern.dev.nav.no
