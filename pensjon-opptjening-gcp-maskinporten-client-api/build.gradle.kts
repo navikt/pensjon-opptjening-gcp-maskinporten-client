@@ -6,7 +6,7 @@ val jacksonVersion = "2.19.0"
 val logbackEncoderVersion = "7.4" // kan ikke oppgraderes pga spring/logback-classic
 val azureAdClient = "0.0.7"
 val wiremockVersion = "3.0.1"
-val mockitoKotlinVersion = "5.4.0"
+val mockitoKotlinVersion = "6.1.0"
 val navTokenSupportVersion = "5.0.37"
 val hibernateValidatorVersion = "8.0.1.Final"
 

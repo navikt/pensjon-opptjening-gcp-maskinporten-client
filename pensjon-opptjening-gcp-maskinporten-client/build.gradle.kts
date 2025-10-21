@@ -11,7 +11,7 @@ val junitJupiterVersion = "5.11.0"
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
-    id("se.patrikerdes.use-latest-versions") version "0.2.18"
+    id("se.patrikerdes.use-latest-versions") version "0.2.19"
     id("net.researchgate.release") version "3.1.0"
     id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
     `maven-publish`
@@ -32,8 +32,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.19.0")
-    implementation("com.nimbusds", "nimbus-jose-jwt", "10.3")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.20.0")
+    implementation("com.nimbusds", "nimbus-jose-jwt", "10.5")
     testImplementation("com.github.tomakehurst", "wiremock", "3.0.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
