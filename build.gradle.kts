@@ -3,7 +3,7 @@ import org.gradle.kotlin.dsl.withType
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
-    id("com.github.ben-manes.versions") version "0.52.0"
+    id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
 }
 
 repositories {

@@ -13,7 +13,7 @@ plugins {
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
     id("se.patrikerdes.use-latest-versions") version "0.2.18"
     id("net.researchgate.release") version "3.1.0"
-    id("com.github.ben-manes.versions") version "0.52.0"
+    id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
     `maven-publish`
     `java-library`
 }

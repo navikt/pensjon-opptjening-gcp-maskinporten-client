@@ -7,7 +7,7 @@ val logbackEncoderVersion = "7.4" // kan ikke oppgraderes pga spring/logback-cla
 val azureAdClient = "0.0.7"
 val wiremockVersion = "3.0.1"
 val mockitoKotlinVersion = "5.4.0"
-val navTokenSupportVersion = "5.0.29"
+val navTokenSupportVersion = "5.0.37"
 val hibernateValidatorVersion = "8.0.1.Final"
 
 val junitJupiterVersion = "5.11.0"
@@ -15,9 +15,9 @@ val junitJupiterVersion = "5.11.0"
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("org.jetbrains.kotlin.plugin.spring") version libs.versions.kotlin.get()
-    id("org.springframework.boot") version "3.5.0"
+    id("org.springframework.boot") version "3.5.6"
     id("io.spring.dependency-management") version "1.1.7"
-    id("com.github.ben-manes.versions") version "0.52.0"
+    id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
 }
 
 group = "no.nav.pensjonopptjening"
