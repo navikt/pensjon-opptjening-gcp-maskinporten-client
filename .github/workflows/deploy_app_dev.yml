@@ -45,6 +45,8 @@ jobs:
       - name: 'Build application'
         run: |
           ../gradlew build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Information'
         run: |
