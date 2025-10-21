@@ -57,7 +57,7 @@ jobs:
         with:
           team: pensjonopptjening
           dockerfile: pensjon-opptjening-gcp-maskinporten-client-api/Dockerfile
-          tag: ${{GIT_REF_TAG}}
+          tag: ${{ env.GIT_REF_TAG }}
 
       - name: 'Deploy pensjon-opptjening-gcp-maskinporten-client-api to dev-gcp'
         uses: nais/deploy/actions/deploy@v2
