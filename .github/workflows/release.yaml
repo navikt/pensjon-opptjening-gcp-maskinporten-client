@@ -1,4 +1,5 @@
-name: Release pensjon-opptjening-gcp-maskinporten-client
+name: 'Release new version'
+
 
 on:
   workflow_dispatch:
@@ -10,6 +11,7 @@ jobs:
       contents: write
       packages: write
       id-token: write
+    environment: release
     defaults:
       run:
         working-directory: ./pensjon-opptjening-gcp-maskinporten-client
@@ -44,3 +46,13 @@ jobs:
         run: ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Generate release info'
+        run: |
+          echo "Releaset ${{env.COMMIT}} som ${{ env.VERSION }}" > release_info.txt
+
+      - name: 'Upload release info'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-info
+          path: release_info.txt
