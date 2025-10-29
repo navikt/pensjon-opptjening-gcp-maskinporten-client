@@ -52,7 +52,7 @@ jobs:
 
       - name: 'Generate release info'
         run: |
-          echo "Releaset ${{env.COMMIT}} som ${{ env.VERSION }}" > release_info.txt
+          echo "Releaset ${{env.COMMIT}} som ${{ env.VERSION }}" > ../release_info.txt
 
       - name: 'Upload release info'
         uses: actions/upload-artifact@v4
