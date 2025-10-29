@@ -39,10 +39,6 @@ jobs:
           ID: '${{ github.event.workflow_run.id }}'
           ACTOR_URL: '${{ github.event.workflow_run.actor.html_url }}'
 
-      - name: 'Sleep to allow upload from the previous run to complete'
-        run: |
-          sleep 3
-
       - name: 'Download run info from previous workflow'
         run: |
           echo "Fetching artifacts for run ID: $RUN_ID"
@@ -56,6 +52,14 @@ jobs:
           https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID/zip
           echo "Unzipping:"
           unzip release-info.zip -d .
+
+      - name: 'debug'
+        run: |
+          ls -l
+          file release-info.zip
+          file release-info
+          strings release-info.zip
+          strings release-info
 
         env:
           GH_TOKEN: ${{ github.token }}
