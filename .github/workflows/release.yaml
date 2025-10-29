@@ -29,7 +29,10 @@ jobs:
         run: git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name "Github Actions"
 
       - name: 'Capture version number for release'
-        run: echo "VERSION=$(grep -v '^#' gradle.properties | grep 'version=' | cut -d '=' -f2 | xargs)" >> $GITHUB_ENV
+        run: | 
+          echo "VERSION=$(grep -v '^#' gradle.properties | grep 'version=' | cut -d '=' -f2 | xargs)" >> $GITHUB_ENV
+          echo "COMMIT=$(echo ${{github.sha}} | cut -c 1-7)" >> $GITHUB_ENV
+
 
       - name: 'ls'
         run: |

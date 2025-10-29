@@ -50,21 +50,8 @@ jobs:
           curl -L -H "Authorization: Bearer $GH_TOKEN" \
           -o release-info.zip \
           https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID/zip
-
-      - name: 'debug'
-        run: |
-          ls -l
-          file release-info.zip
-          file release-info
-          strings release-info.zip
-          strings release-info
-
-      - name: 'unzipping'
-        run: |
           echo "Unzipping:"
           unzip release-info.zip -d .
-
-
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.event.workflow_run.id }}
