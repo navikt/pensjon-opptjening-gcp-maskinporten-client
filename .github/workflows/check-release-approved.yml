@@ -39,6 +39,10 @@ jobs:
           ID: '${{ github.event.workflow_run.id }}'
           ACTOR_URL: '${{ github.event.workflow_run.actor.html_url }}'
 
+      - name: 'Sleep to allow upload from the previous run to complete'
+        run: |
+          sleep 3
+
       - name: 'Download run info from previous workflow'
         run: |
           echo "Fetching artifacts for run ID: $RUN_ID"
