@@ -6,12 +6,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val junitJupiterVersion = "5.11.0"
+val junitJupiterVersion = "5.14.4"
+val wiremockVersion = "3.13.2"
+val jettyVersion = "12.1.6" // trengs pga wiremock
+
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
-    id("se.patrikerdes.use-latest-versions") version "0.2.19"
     id("net.researchgate.release") version "3.1.0"
     id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
     `maven-publish`
@@ -33,12 +35,17 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.21.3")
-    implementation("com.nimbusds", "nimbus-jose-jwt", "10.5")
-    testImplementation("com.github.tomakehurst", "wiremock", "3.0.1")
+    implementation("com.nimbusds", "nimbus-jose-jwt", "10.9")
+    testImplementation("org.wiremock:wiremock-jetty12:${wiremockVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // for wiremock
+    testImplementation("org.eclipse.jetty:jetty-bom:${jettyVersion}")
+    testImplementation("org.eclipse.jetty.ee10:jetty-ee10-bom:${jettyVersion}")
+    testImplementation("org.eclipse.jetty.ee10:jetty-ee10-servlet:${jettyVersion}")
 }
 
 release {

@@ -8,6 +8,7 @@ dependencyResolutionManagement {
             version("kotlin", "2.3.21")
             version("java", "21")
             version("benManesVersions", "0.54.0")
+            version("jacksonVersion", "2.21.3")
         }
     }
 }
