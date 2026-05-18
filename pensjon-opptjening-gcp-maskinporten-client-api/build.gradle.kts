@@ -14,7 +14,7 @@ val hibernateValidatorVersion = "9.1.0.Final"
 
 val junitJupiterVersion = "5.11.0"
 
-val jettyVersion = "12.1.6" // trengs pga wiremock
+val jettyVersion = "12.1.9" // trengs pga wiremock
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()

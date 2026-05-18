@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val junitJupiterVersion = "5.14.4"
 val wiremockVersion = "3.13.2"
-val jettyVersion = "12.1.6" // trengs pga wiremock
+val jettyVersion = "12.1.9" // trengs pga wiremock
 
 
 plugins {
