@@ -32,7 +32,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.20.0")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.21.3")
     implementation("com.nimbusds", "nimbus-jose-jwt", "10.5")
     testImplementation("com.github.tomakehurst", "wiremock", "3.0.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
@@ -76,9 +76,9 @@ tasks.test {
     useJUnitPlatform()
     testLogging {
         events(
-            org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
-            org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
-            org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+            TestLogEvent.PASSED,
+            TestLogEvent.FAILED,
+            TestLogEvent.SKIPPED
         )
     }
 }
