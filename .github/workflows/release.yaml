@@ -16,7 +16,7 @@ jobs:
         working-directory: ./pensjon-opptjening-gcp-maskinporten-client
     steps:
       - name: 'Checkout code'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 'Java 21'
         uses: actions/setup-java@v5
@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Check out release-version'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: "release-${{ env.VERSION }}"
 
@@ -58,7 +58,7 @@ jobs:
           echo "Releaset ${{env.COMMIT}} som ${{ env.VERSION }}" > ../release_info.txt
 
       - name: 'Upload release info'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-info
           path: release_info.txt

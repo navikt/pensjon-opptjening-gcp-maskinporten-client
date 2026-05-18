@@ -16,7 +16,7 @@ jobs:
         working-directory: ./pensjon-opptjening-gcp-maskinporten-client-api
     steps:
       - name: 'Pull repo'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 'Java 21'
         uses: actions/setup-java@v5
