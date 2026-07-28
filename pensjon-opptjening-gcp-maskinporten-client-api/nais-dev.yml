@@ -9,6 +9,11 @@ spec:
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: dev-gcp
+    - name: JAVA_TRUSTSTORE_OPTIONS
+      value: "-Djavax.net.ssl.trustStore=$(NAV_TRUSTSTORE_PATH)
+              -Djavax.net.ssl.trustStorePassword=$(NAV_TRUSTSTORE_PASSWORD)"
+    - name: JDK_JAVA_OPTIONS
+      value: "$(JAVA_TRUSTSTORE_OPTIONS)"
   azure:
     sidecar:
       enabled: true
