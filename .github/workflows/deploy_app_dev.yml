@@ -2,6 +2,8 @@ name: Bygg og deploy pensjon-opptjening-gcp-maskinporten-client-api til dev-gcp
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *' #to get patches for docker-image without having to commit to main
 
 jobs:
   tag_build_and_deploy:
