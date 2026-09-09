@@ -9,8 +9,8 @@ val wiremockVersion = "3.13.2"
 
 
 val mockitoKotlinVersion = "6.3.0"
-val navTokenSupportVersion = "6.0.7"
-val hibernateValidatorVersion = "9.1.0.Final"
+val navTokenSupportVersion = "6.0.12"
+val hibernateValidatorVersion = "9.1.3.Final"
 
 val junitJupiterVersion = "5.11.0"
 
@@ -19,7 +19,7 @@ val jettyVersion = "12.1.9" // trengs pga wiremock
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("org.jetbrains.kotlin.plugin.spring") version libs.versions.kotlin.get()
-    id("org.springframework.boot") version "4.0.6"
+    id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
 }
