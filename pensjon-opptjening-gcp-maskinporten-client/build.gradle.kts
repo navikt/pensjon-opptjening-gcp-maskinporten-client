@@ -5,14 +5,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val junitJupiterVersion = "5.14.4"
 val wiremockVersion = "3.13.2"
-val jettyVersion = "12.1.9" // trengs pga wiremock
+val jettyVersion = "12.1.15" // trengs pga wiremock
 
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
-    id("net.researchgate.release") version "3.1.0"
-    id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
+    id("net.researchgate.release") version "3.2.0"
+    id("io.github.ben-manes.versions") version libs.versions.benManesVersions.get()
     `maven-publish`
     `java-library`
 }
@@ -31,8 +31,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.21.3")
-    implementation("com.nimbusds", "nimbus-jose-jwt", "10.9")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.23.0")
+    implementation("com.nimbusds", "nimbus-jose-jwt", "10.10")
     testImplementation("org.wiremock:wiremock-jetty12:${wiremockVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
