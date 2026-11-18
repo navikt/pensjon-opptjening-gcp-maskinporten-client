@@ -2,26 +2,26 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val jacksonVersion = "2.21.3"
+val jacksonVersion = "2.23.0"
 val logbackEncoderVersion = "9.0" // kan ikke oppgraderes pga spring/logback-classic
 val azureAdClient = "0.0.7"
 val wiremockVersion = "3.13.2"
 
 
-val mockitoKotlinVersion = "6.3.0"
-val navTokenSupportVersion = "6.0.12"
-val hibernateValidatorVersion = "9.1.3.Final"
+val mockitoKotlinVersion = "6.4.0"
+val navTokenSupportVersion = "6.0.14"
+val hibernateValidatorVersion = "9.1.6.Final"
 
 val junitJupiterVersion = "5.11.0"
 
-val jettyVersion = "12.1.9" // trengs pga wiremock
+val jettyVersion = "12.1.15" // trengs pga wiremock
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("org.jetbrains.kotlin.plugin.spring") version libs.versions.kotlin.get()
-    id("org.springframework.boot") version "4.1.1"
+    id("org.springframework.boot") version "4.1.2"
     id("io.spring.dependency-management") version "1.1.7"
-    id("com.github.ben-manes.versions") version libs.versions.benManesVersions.get()
+    id("io.github.ben-manes.versions") version libs.versions.benManesVersions.get()
 }
 
 group = "no.nav.pensjonopptjening"
