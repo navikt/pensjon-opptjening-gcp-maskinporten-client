@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val junitJupiterVersion = "5.14.4"
-val wiremockVersion = "3.13.2"
+val wiremockVersion = "4.0.0-beta.43"
 val jettyVersion = "12.1.15" // trengs pga wiremock
 
 
@@ -31,9 +31,9 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.23.0")
-    implementation("com.nimbusds", "nimbus-jose-jwt", "10.10")
-    testImplementation("org.wiremock:wiremock-jetty12:${wiremockVersion}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.23.0")
+    implementation("com.nimbusds:nimbus-jose-jwt:10.10")
+    testImplementation("org.wiremock:wiremock-jetty:${wiremockVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
