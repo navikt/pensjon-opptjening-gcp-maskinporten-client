@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val jacksonVersion = "2.23.0"
 val logbackEncoderVersion = "9.0" // kan ikke oppgraderes pga spring/logback-classic
 val azureAdClient = "0.0.7"
-val wiremockVersion = "3.13.2"
+val wiremockVersion = "4.0.0-beta.43"
 
 
 val mockitoKotlinVersion = "6.4.0"
@@ -57,13 +57,14 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    testImplementation("org.wiremock:wiremock-jetty12:${wiremockVersion}")
-    testImplementation("no.nav.security:token-validation-spring-test:${navTokenSupportVersion}")
+    testImplementation("org.wiremock:wiremock-jetty:${wiremockVersion}")
 
 // trengs fordi wiremock henger etter på jetty-versjon i forhold til spring 4
     testImplementation("org.eclipse.jetty:jetty-bom:${jettyVersion}")
     testImplementation("org.eclipse.jetty.ee10:jetty-ee10-bom:${jettyVersion}")
     testImplementation("org.eclipse.jetty.ee10:jetty-ee10-servlet:${jettyVersion}")
+
+//    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
 }
 
 tasks.test {
