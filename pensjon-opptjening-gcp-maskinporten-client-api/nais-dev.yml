@@ -31,7 +31,7 @@ spec:
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.beregn.read
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.simuler.read
         - name: nav:pensjonopptjening:forstegangstjeneste.write
-        - name: nav:pensjonopptjening:ekstern.beholdning.read
+        - name: nav:pensjonopptjening:ekstern.spk.beholdning.read
   accessPolicy:
     outbound:
       rules:
