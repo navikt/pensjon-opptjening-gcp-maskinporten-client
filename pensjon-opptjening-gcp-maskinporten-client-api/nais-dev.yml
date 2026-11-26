@@ -32,6 +32,7 @@ spec:
         - name: nav:pensjonopptjening:ekstern.afp.beholdningsgrunnlag.simuler.read
         - name: nav:pensjonopptjening:forstegangstjeneste.write
         - name: nav:pensjonopptjening:ekstern.spk.beholdning.read
+        - name: nav:pensjonopptjening:ekstern.hendelse.read
   accessPolicy:
     outbound:
       rules:
